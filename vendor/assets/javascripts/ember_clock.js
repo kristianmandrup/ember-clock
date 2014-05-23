@@ -8,7 +8,7 @@ App.Clock = Ember.Object.extend({
   },
 
   tick: function() {
-    var now = new Date()
+    var now = new Date();
 
     this.setProperties({
       second: now.getSeconds(),
@@ -17,7 +17,7 @@ App.Clock = Ember.Object.extend({
     });
 
     var self = this;
-    setTimeout(function(){ self.tick(); }, 1000)
+    Ember.run.later(function(){ self.tick(); }, 1000);
   }
 });
 
@@ -29,4 +29,4 @@ App.Clock.reopenClass({
     container.register('clock', 'main', application.Clock);
     container.typeInjection('controller', 'clock', 'clock:main');      
   }
-})
+});
